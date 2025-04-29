@@ -1,5 +1,7 @@
 package com.truper.test.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,7 @@ public class OrdenCompraController {
 	@GetMapping("/{sucursal}")
 	public OrdenCompraDto getOrdenCompra(@PathVariable(name="sucursal") String sucursal){
 		
-		return ordenCompraService.getSucusales(sucursal);
+		return ordenCompraService.getOrdenCompra(sucursal);
 	}
 	
 	@PostMapping("/saveOrdenCompra")
@@ -33,11 +35,11 @@ public class OrdenCompraController {
 	
 	@PutMapping("/update/{codigoProducto}/{nuevoPrecio}")
 	public String updateOrdenCompra(@PathVariable(name= "codigoProducto" )String codigoProducto, 
-								  @PathVariable(name= "nuevoPrecio" )int nuevoPrecio) {
+								  @PathVariable(name= "nuevoPrecio" )BigDecimal nuevoPrecio) {
 		
-		ordenCompraService.updateOrdenCompra(codigoProducto, nuevoPrecio);
 		
-		return "Registro modificado correctamente";
+		
+		return ordenCompraService.updateOrdenCompra(codigoProducto, nuevoPrecio);
 	}
 	
 }

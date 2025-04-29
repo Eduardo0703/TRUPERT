@@ -1,5 +1,6 @@
 package com.truper.test.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class OrdenCompraService {
 	 * @param sucursal
 	 * @return
 	 */
-	public OrdenCompraDto getSucusales(String sucursal){
+	public OrdenCompraDto getOrdenCompra(String sucursal){
 		
 		OrdenCompraDto ordenCompra = new OrdenCompraDto();
 		List<Productos> producto = null;
@@ -100,18 +101,26 @@ public class OrdenCompraService {
 	 * @param codigoProducto
 	 * @param nuevoPrecio
 	 */
-	public void updateOrdenCompra(String codigoProducto, int nuevoPrecio) {
+	public String updateOrdenCompra(String codigoProducto, BigDecimal nuevoPrecio) {
 		Productos producto = new Productos();
+		Optional<Productos> prod = productoRepository.findByCodigo(codigoProducto);
+		String mensaje ="";
 		
-		List<Productos> prod = productoRepository.findByCodigo(codigoProducto);
+		if(prod.isPresent()) {
+			producto.setProductoId(prod.get().getProductoId());
+			producto.setDescripcion(prod.get().getDescripcion());
+			producto.setOrden(prod.get().getOrden());
+			producto.setPrecio(nuevoPrecio);
+			producto.setCodigo(prod.get().getCodigo());
+			
+			productoRepository.save(producto);
+			mensaje ="El registro se actualizo correctamente";
+		}else {
+			mensaje = "No se encontro el registro";
+		}
 		
-		producto.setProductoId(prod.get(0).getProductoId());
-		producto.setDescripcion(prod.get(0).getDescripcion());
-		producto.setOrden(prod.get(0).getOrden());
-		producto.setPrecio(nuevoPrecio);
-		producto.setCodigo(prod.get(0).getCodigo());
 		
-		productoRepository.save(producto);
+		return mensaje;
 		
 	}
 }

@@ -1,5 +1,7 @@
 package com.truper.test.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Productos {
 	@Column(nullable = false)
 	private String descripcion;
 	@Column(nullable = false)
-	private int precio;
+	private BigDecimal precio;
 	
 	@ManyToOne
 	@JoinColumn(name = "ordenId")
@@ -52,11 +54,12 @@ public class Productos {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public int getPrecio() {
+	public BigDecimal getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
+	
 	
 }
