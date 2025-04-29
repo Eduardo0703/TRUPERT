@@ -21,22 +21,23 @@ public class OrdenCompraController {
 	@GetMapping("/{sucursal}")
 	public OrdenCompraDto getOrdenCompra(@PathVariable(name="sucursal") String sucursal){
 		
-		System.out.println("It's working");
-		
 		return ordenCompraService.getSucusales(sucursal);
 	}
 	
 	@PostMapping("/saveOrdenCompra")
-	public void saveOrdenCompra(@RequestBody DatosMostrados datosMostrados) {
+	public String saveOrdenCompra(@RequestBody DatosMostrados datosMostrados) {
 		
 		ordenCompraService.saveOrdenCompra(datosMostrados);
+		return "Registro guardado correctamente";
 	}
 	
 	@PutMapping("/update/{codigoProducto}/{nuevoPrecio}")
-	public void updateOrdenCompra(@PathVariable(name= "codigoProducto" )String codigoProducto, 
+	public String updateOrdenCompra(@PathVariable(name= "codigoProducto" )String codigoProducto, 
 								  @PathVariable(name= "nuevoPrecio" )int nuevoPrecio) {
 		
 		ordenCompraService.updateOrdenCompra(codigoProducto, nuevoPrecio);
+		
+		return "Registro modificado correctamente";
 	}
 	
 }
