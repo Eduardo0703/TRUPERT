@@ -17,24 +17,24 @@ public class Sucursales {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	long sucursal_id;
+	long sucursalId;
 	@Column(nullable = false)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "orden_id")
-	private List<Ordenes> ordenes;
+	@OneToMany(mappedBy = "ordenId")
+	private List<Ordenes> orden;
 	
-	public List<Ordenes> getOrdenes() {
-		return ordenes;
+	public List<Ordenes> getOrden() {
+		return orden;
 	}
-	public void setOrdenes(List<Ordenes> ordenes) {
-		this.ordenes = ordenes;
+	public void setOrden(List<Ordenes> orden) {
+		this.orden = orden;
 	}
-	public long getSucursal_id() {
-		return sucursal_id;
+	public long getSucursalId() {
+		return sucursalId;
 	}
-	public void setSucursal_id(long sucursal_id) {
-		this.sucursal_id = sucursal_id;
+	public void setSucursalId(long sucursalId) {
+		this.sucursalId = sucursalId;
 	}
 	public String getNombre() {
 		return nombre;

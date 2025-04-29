@@ -20,36 +20,39 @@ public class Ordenes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	private long orden_id;
+	private long ordenId;
 	@Column(nullable = false)
 	private Date fecha;
 	@Column(nullable = false)
 	private int total;
 	
-	@OneToMany(mappedBy = "producto_id")
+	@OneToMany(mappedBy = "productoId")
 	private List<Productos> productos; 
 	
 	@ManyToOne
-	@JoinColumn(name = "sucursal_id")
-	private Sucursales sucursales;
+	@JoinColumn(name = "sucursalId")
+	private Sucursales sucursal;
 	
-	public Sucursales getSucursales() {
-		return sucursales;
+	
+	
+	public long getOrdenId() {
+		return ordenId;
 	}
-	public void setSucursales(Sucursales sucursales) {
-		this.sucursales = sucursales;
+	public void setOrdenId(long ordenId) {
+		this.ordenId = ordenId;
+	}
+	
+	public Sucursales getSucursal() {
+		return sucursal;
+	}
+	public void setSucursal(Sucursales sucursal) {
+		this.sucursal = sucursal;
 	}
 	public List<Productos> getProductos() {
 		return productos;
 	}
 	public void setProductos(List<Productos> productos) {
 		this.productos = productos;
-	}
-	public long getOrden_id() {
-		return orden_id;
-	}
-	public void setOrden_id(long orden_id) {
-		this.orden_id = orden_id;
 	}
 	public Date getFecha() {
 		return fecha;

@@ -16,7 +16,7 @@ public class Productos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	private long producto_id;
+	private long productoId;
 	@Column(nullable = false)
 	private String codigo;
 	@Column(nullable = false)
@@ -25,17 +25,20 @@ public class Productos {
 	private int precio;
 	
 	@ManyToOne
-	@JoinColumn(name = "orden_id")
-	private Ordenes orden_id;
-	
-	
-	
-	
-	public long getProducto_id() {
-		return producto_id;
+	@JoinColumn(name = "ordenId")
+	private Ordenes orden;
+
+	public Ordenes getOrden() {
+		return orden;
 	}
-	public void setProducto_id(long producto_id) {
-		this.producto_id = producto_id;
+	public void setOrden(Ordenes orden) {
+		this.orden = orden;
+	}
+	public long getProductoId() {
+		return productoId;
+	}
+	public void setProductoId(long productoId) {
+		this.productoId = productoId;
 	}
 	public String getCodigo() {
 		return codigo;
@@ -56,6 +59,4 @@ public class Productos {
 		this.precio = precio;
 	}
 	
-	
-
 }
